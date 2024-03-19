@@ -38,11 +38,18 @@ struct CoinRowView: View {
             VStack(alignment: .trailing){
                 Text(coin.currentPrice.asCurrencyWith6Decimals())
                     .fontWeight(.bold)
-                Text((coin.priceChangePercentage24H ?? 0).asPercentString())
-                    .font(.callout)
-                    .foregroundStyle(
-                        (coin.priceChangePercentage24H ?? 0.00) > 0 ? Color.theme.green : Color.theme.red
-                    )
+                
+                HStack{
+                    Image(systemName: (coin.priceChangePercentage24H ?? 0.00) > 0 ? "arrow.up" : "arrow.down")
+                        .font(.caption)
+                        .foregroundStyle((coin.priceChangePercentage24H ?? 0.00) > 0 ? Color.theme.green : Color.theme.red)
+                        .padding(.horizontal, -5)
+                    Text((coin.priceChangePercentage24H ?? 0).asPercentString())
+                        .font(.callout)
+                        .foregroundStyle(
+                            (coin.priceChangePercentage24H ?? 0.00) > 0 ? Color.theme.green : Color.theme.red
+                        )
+                }
             }
         }
     }

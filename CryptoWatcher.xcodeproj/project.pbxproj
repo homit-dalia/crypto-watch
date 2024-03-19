@@ -17,6 +17,7 @@
 		95833B932BA63AC300FA942D /* PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95833B922BA63AC300FA942D /* PreviewProvider.swift */; };
 		95833B952BA63ADD00FA942D /* CoinRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95833B942BA63ADD00FA942D /* CoinRowView.swift */; };
 		95833B972BA6448E00FA942D /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95833B962BA6448E00FA942D /* Double.swift */; };
+		95833B992BA8A0C500FA942D /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95833B982BA8A0C500FA942D /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		95833B922BA63AC300FA942D /* PreviewProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewProvider.swift; sourceTree = "<group>"; };
 		95833B942BA63ADD00FA942D /* CoinRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRowView.swift; sourceTree = "<group>"; };
 		95833B962BA6448E00FA942D /* Double.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
+		95833B982BA8A0C500FA942D /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 		95833B852BA6131C00FA942D /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				95833B982BA8A0C500FA942D /* HomeViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95833B912BA633FA00FA942D /* CoinModel.swift in Sources */,
+				95833B992BA8A0C500FA942D /* HomeViewModel.swift in Sources */,
 				95833B932BA63AC300FA942D /* PreviewProvider.swift in Sources */,
 				95833B972BA6448E00FA942D /* Double.swift in Sources */,
 				95833B832BA6130000FA942D /* HomeView.swift in Sources */,
