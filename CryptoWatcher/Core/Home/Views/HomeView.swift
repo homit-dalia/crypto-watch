@@ -11,37 +11,50 @@ struct HomeView: View {
     
     @EnvironmentObject private var vm: HomeViewModel
     @State private var showPortfolio : Bool = false
+    @State private var searchText: String = ""
     
     var body: some View {
         ZStack{
-            Color.theme.background
-                .ignoresSafeArea()
-            VStack {
-                homeHeaderView
-                
-                listHeader
-                
-                if !showPortfolio {
-                    List {
-                        ForEach(vm.allCoins) { coin in
-                            CoinRowView(coin: coin, showHoldingColumn: false)
-                        }
+            
+            if vm.selectedTab == 0 {
+                List {
+                    ForEach(vm.allCoins) { coin in
+                        CoinRowView(coin: coin, showHoldingColumn: false)
                     }
-                    .listStyle(.plain)
-                    .transition(.move(edge: .leading))
                 }
-                
-                if showPortfolio {
-                    List {
-                        ForEach(vm.allPortfolio) { coin in
-                            CoinRowView(coin: coin, showHoldingColumn: true)
-                        }
+                .searchable(text: $searchText, placement: .navigationBarDrawer)
+                .listStyle(.plain)
+                .transition(.move(edge: .leading))
+            }
+            else {
+                List {
+                    ForEach(vm.allPortfolio) { coin in
+                        CoinRowView(coin: coin, showHoldingColumn: true)
                     }
-                    .listStyle(.plain)
-                    .transition(.move(edge: .trailing))
                 }
-                
-                Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
+                .listStyle(.plain)
+                .searchable(text: $searchText)
+                .autocorrectionDisabled()
+                .transition(.move(edge: .trailing))
+            }
+            
+            Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: {
+                    // Handle action for leading toolbar button
+                }) {
+                    Image(systemName: "gearshape")
+                }
+            }
+            
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: {
+                    // Handle action for trailing toolbar button
+                }) {
+                    Image(systemName: "plus")
+                }
             }
         }
     }
@@ -95,6 +108,8 @@ extension HomeView {
 }
 
 #Preview {
-    HomeView()
-        .environmentObject(HomeViewModel())
+    NavigationView{
+        HomeView()
+    }
+    .environmentObject(HomeViewModel())
 }

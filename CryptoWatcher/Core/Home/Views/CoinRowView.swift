@@ -15,7 +15,7 @@ struct CoinRowView: View {
     var body: some View {
         HStack{
             Text("\(coin.rank)")
-                .font(.title3)
+                .font(.headline)
                 .foregroundStyle(Color.theme.accent)
             CoinImage(url: coin.image)
                 .padding(.horizontal, 4)
@@ -24,7 +24,7 @@ struct CoinRowView: View {
                 Spacer()
                 VStack{
                     Text(coin.currentHoldingsValue.asCurrencyWith2Decimals())
-                        .font(.headline)
+                        .font(.subheadline)
                         .fontWeight(.bold)
                     Text((coin.currentHoldings ?? 0).asNumberString())
                         .font(.subheadline)
@@ -41,7 +41,7 @@ struct CoinRowView: View {
                 
                 HStack{
                     Image(systemName: (coin.priceChangePercentage24H ?? 0.00) > 0 ? "arrow.up" : "arrow.down")
-                        .font(.caption)
+                        .font(.caption2)
                         .foregroundStyle((coin.priceChangePercentage24H ?? 0.00) > 0 ? Color.theme.green : Color.theme.red)
                         .padding(.horizontal, -5)
                     Text((coin.priceChangePercentage24H ?? 0).asPercentString())

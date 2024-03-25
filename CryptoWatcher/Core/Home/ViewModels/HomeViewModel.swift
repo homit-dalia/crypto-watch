@@ -10,6 +10,7 @@ import Combine
 
 class HomeViewModel: ObservableObject {
     
+    @Published var selectedTab = 0
     @Published var allCoins: [CoinModel] = []
     @Published var allPortfolio: [CoinModel] = []
     
