@@ -38,8 +38,14 @@ struct CryptoWatcherApp: App {
     // Function to create content view for each tab
     private func tabContentView(for tab: Tab) -> some View {
         NavigationView {
-            HomeView()
-                .navigationBarTitle(tab.title) // Set dynamic navigation title
+            if tab == .currencies {
+                CurrenciesView()
+                    .navigationTitle(tab.title)
+            }
+            else if tab == .portfolio {
+                PortfolioView()
+                    .navigationTitle(tab.title)
+            }
         }
         .environmentObject(vm)
     }
