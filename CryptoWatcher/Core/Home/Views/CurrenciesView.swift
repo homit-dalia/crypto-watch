@@ -15,16 +15,13 @@ struct CurrenciesView: View {
     
     var body: some View {
         ZStack{
-            if !vm.isLoading && vm.allCoins.isEmpty && !vm.searchTextCurrencies.isEmpty {
+            if !vm.isCoinDataLoading && vm.allCoins.isEmpty && !vm.searchTextCurrencies.isEmpty {
                 ContentUnavailableView.search
-            }
-            else if vm.isLoading {
-                ProgressView()
             }
             else {
                 List {
                     Section() {
-                        StatsView(type: .market)
+                        StatsView(type: .market, statistics: vm.marketStatistics)
                     }
                     .listRowSeparator(.hidden)
                     ForEach(vm.allCoins) { coin in

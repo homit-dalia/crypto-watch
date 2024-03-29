@@ -11,13 +11,19 @@ import Combine
 class HomeViewModel: ObservableObject {
     
     @Published var selectedTab = 0
-    @Published var isLoading: Bool = true
+    @Published var isCoinDataLoading: Bool = true
+    
     @Published var searchTextCurrencies: String = ""
     @Published var searchTextPortfolio: String = ""
+    
+    @Published var isStatisticsLoading: Bool = true
+    @Published var marketStatistics: [StatisticModel] = []
+    @Published var userStatistics: [StatisticModel] = []
     @Published var allCoins: [CoinModel] = []
     @Published var allPortfolio: [CoinModel] = []
     
-    private let coinService = CoinDataService()
+    private let coinDataService = CoinDataService()
+    private let marketDataService = MarketDataService()
     private var cancellables = Set<AnyCancellable>()
     
     init() {
@@ -26,12 +32,21 @@ class HomeViewModel: ObservableObject {
     
     private func addSubscribers() {
         $searchTextCurrencies
-            .combineLatest(coinService.$allCoins)
+            .combineLatest(coinDataService.$allCoins)
             .debounce(for: 0.5, scheduler: DispatchQueue.main)
             .map(filterCoins)
             .sink { [weak self] receivedValue in
                 self?.allCoins = receivedValue
-                self?.isLoading = false
+                self?.isCoinDataLoading = false
+            }
+            .store(in: &cancellables)
+        
+        marketDataService.$marketData
+            .map(mapGlobalMarketData)
+            .sink { [weak self] (returnedStatistics) in
+                self?.marketStatistics = Array(returnedStatistics.prefix(3))
+                self?.userStatistics = Array(returnedStatistics.dropFirst(3))
+                self?.isStatisticsLoading = false
             }
             .store(in: &cancellables)
     }
@@ -48,6 +63,19 @@ class HomeViewModel: ObservableObject {
             return coin.name.lowercased().contains(lowercaseText) || coin.id.lowercased().contains(lowercaseText) ||
             coin.symbol.lowercased().contains(lowercaseText)
         }
+    }
+    
+    private func mapGlobalMarketData(marketDataModel: MarketDataModel?) -> [StatisticModel] {
+        
+        var stats: [StatisticModel] = []
+        guard let data = marketDataModel else {return stats}
+        stats.append(contentsOf: [
+            StatisticModel(title: "Market Cap", value: data.marketCap, percentageChange: data.marketCapChangePercentage24HUsd),
+            StatisticModel(title: "Volume", value: data.volume),
+            StatisticModel(title: "BTC Mkt. %", value: data.btcDominance),
+            StatisticModel(title: "Holdings", value: "$0.00", percentageChange:0)
+        ])
+        return stats
     }
 }
 

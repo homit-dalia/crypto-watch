@@ -9,28 +9,23 @@ import SwiftUI
 
 struct StatsView: View {
     
-    @State var type: StatType
-    
-    let marketStatistics: [StatisticModel] = [
-        StatisticModel(title: "Title", value: "Value", percentageChange: 1),
-        StatisticModel(title: "Title", value: "Value"),
-        StatisticModel(title: "Title", value: "Value"),
-    ]
-    
-    let userStatistics: StatisticModel = StatisticModel(title: "Holdings", value: "$23.22M", percentageChange: 21)
+    var type: StatType
+    var statistics: [StatisticModel]
     
     var body: some View {
-        if type == .market{
+        if type == .market {
             HStack {
-                ForEach(marketStatistics) { stat in
+                ForEach(statistics) { stat in
                     StatisticView(stat: stat, type: .market)
                         .frame(width: UIScreen.main.bounds.size.width / 3)
                 }
             }
             .frame(width: UIScreen.main.bounds.size.width, alignment: .leading)
         }
-        else if type == .user{
-            StatisticView(stat: userStatistics, type: .user)
+        else if type == .user {
+            if !statistics.isEmpty {
+                StatisticView(stat: statistics[0], type: .user)
+            }
         }
     }
 }
@@ -41,6 +36,7 @@ enum StatType {
 
 struct StatsView_Previews: PreviewProvider {
     static var previews: some View {
-        StatsView(type: .user)
+        StatsView(type: .market, statistics: [DeveloperPreview.instance.stat1, DeveloperPreview.instance.stat2, DeveloperPreview.instance.stat3])
+            .previewLayout(.sizeThatFits)
     }
 }

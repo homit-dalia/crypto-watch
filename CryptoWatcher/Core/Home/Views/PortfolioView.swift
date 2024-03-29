@@ -16,7 +16,12 @@ struct PortfolioView: View {
         HStack {
             List {
                 Section() {
-                    StatsView(type: .user)
+                    if vm.isStatisticsLoading {
+                        ProgressView()
+                    }
+                    else {
+                        StatsView(type: .user, statistics: vm.userStatistics)
+                    }
                 }
                 .listRowSeparator(.hidden)
                 ForEach(vm.allPortfolio) { coin in

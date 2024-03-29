@@ -14,7 +14,7 @@ struct StatisticView: View {
     
     var body: some View {
         if type == .market{
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .center, spacing: 4) {
                 Text(stat.title)
                     .font(.caption)
                     .foregroundStyle(Color.theme.secondaryText)
