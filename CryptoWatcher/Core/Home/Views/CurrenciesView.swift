@@ -15,17 +15,26 @@ struct CurrenciesView: View {
     
     var body: some View {
         ZStack{
-            if vm.allCoins.isEmpty && !vm.searchTextCurrencies.isEmpty {
+            if !vm.isLoading && vm.allCoins.isEmpty && !vm.searchTextCurrencies.isEmpty {
                 ContentUnavailableView.search
             }
-            List {
-                ForEach(vm.allCoins) { coin in
-                    CoinRowView(coin: coin, showHoldingColumn: false)
-                }
+            else if vm.isLoading {
+                ProgressView()
             }
-            .listStyle(.plain)
-            .searchable(text: $vm.searchTextCurrencies)
-            .autocorrectionDisabled()
+            else {
+                List {
+                    Section() {
+                        StatsView(type: .market)
+                    }
+                    .listRowSeparator(.hidden)
+                    ForEach(vm.allCoins) { coin in
+                        CoinRowView(coin: coin, showHoldingColumn: false)
+                    }
+                }
+                .listStyle(.plain)
+                .searchable(text: $vm.searchTextCurrencies)
+                .autocorrectionDisabled()
+            }
         }
     }
 }

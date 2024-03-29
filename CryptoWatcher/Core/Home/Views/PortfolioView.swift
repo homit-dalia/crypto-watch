@@ -15,6 +15,10 @@ struct PortfolioView: View {
     var body: some View {
         HStack {
             List {
+                Section() {
+                    StatsView(type: .user)
+                }
+                .listRowSeparator(.hidden)
                 ForEach(vm.allPortfolio) { coin in
                     CoinRowView(coin: coin, showHoldingColumn: true)
                 }
@@ -35,5 +39,8 @@ struct PortfolioView: View {
 }
 
 #Preview {
-    PortfolioView()
+    NavigationView{
+        PortfolioView()
+    }
+    .environmentObject(HomeViewModel())
 }

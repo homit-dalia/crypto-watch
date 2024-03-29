@@ -26,6 +26,9 @@
 		95FF34562BB15269008811C2 /* LocalFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FF34552BB15269008811C2 /* LocalFileManager.swift */; };
 		95FF34582BB1A86E008811C2 /* PortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FF34572BB1A86E008811C2 /* PortfolioView.swift */; };
 		95FF345A2BB1AA5D008811C2 /* CurrenciesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FF34592BB1AA5D008811C2 /* CurrenciesView.swift */; };
+		95FF345C2BB60B39008811C2 /* StatisticModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FF345B2BB60B39008811C2 /* StatisticModel.swift */; };
+		95FF345E2BB6A126008811C2 /* StatisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FF345D2BB6A126008811C2 /* StatisticView.swift */; };
+		95FF34622BB6AA06008811C2 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FF34612BB6AA06008811C2 /* StatsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +52,9 @@
 		95FF34552BB15269008811C2 /* LocalFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFileManager.swift; sourceTree = "<group>"; };
 		95FF34572BB1A86E008811C2 /* PortfolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioView.swift; sourceTree = "<group>"; };
 		95FF34592BB1AA5D008811C2 /* CurrenciesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesView.swift; sourceTree = "<group>"; };
+		95FF345B2BB60B39008811C2 /* StatisticModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticModel.swift; sourceTree = "<group>"; };
+		95FF345D2BB6A126008811C2 /* StatisticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticView.swift; sourceTree = "<group>"; };
+		95FF34612BB6AA06008811C2 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +142,7 @@
 				95833B942BA63ADD00FA942D /* CoinRowView.swift */,
 				95FF34572BB1A86E008811C2 /* PortfolioView.swift */,
 				95FF34592BB1AA5D008811C2 /* CurrenciesView.swift */,
+				95FF34612BB6AA06008811C2 /* StatsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -154,6 +161,7 @@
 			children = (
 				95FF34532BAE02A2008811C2 /* CoinImageView.swift */,
 				95833B892BA615B300FA942D /* CircleButtonView.swift */,
+				95FF345D2BB6A126008811C2 /* StatisticView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -162,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				95833B902BA633FA00FA942D /* CoinModel.swift */,
+				95FF345B2BB60B39008811C2 /* StatisticModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -258,6 +267,7 @@
 				95833B992BA8A0C500FA942D /* HomeViewModel.swift in Sources */,
 				95FF34562BB15269008811C2 /* LocalFileManager.swift in Sources */,
 				95833B932BA63AC300FA942D /* PreviewProvider.swift in Sources */,
+				95FF34622BB6AA06008811C2 /* StatsView.swift in Sources */,
 				95FF345A2BB1AA5D008811C2 /* CurrenciesView.swift in Sources */,
 				95FF34502BADFB9F008811C2 /* CoinImageViewModel.swift in Sources */,
 				95833B972BA6448E00FA942D /* Double.swift in Sources */,
@@ -267,9 +277,11 @@
 				95833B702BA39B4500FA942D /* CryptoWatcherApp.swift in Sources */,
 				95833B8A2BA615B300FA942D /* CircleButtonView.swift in Sources */,
 				95ABA2D02BAB72190027073E /* NetworkingManager.swift in Sources */,
+				95FF345E2BB6A126008811C2 /* StatisticView.swift in Sources */,
 				95FF34522BADFC7A008811C2 /* CoinImageService.swift in Sources */,
 				95833B952BA63ADD00FA942D /* CoinRowView.swift in Sources */,
 				95ABA2CD2BAA14930027073E /* CoinDataService.swift in Sources */,
+				95FF345C2BB60B39008811C2 /* StatisticModel.swift in Sources */,
 				95833B7F2BA39D9A00FA942D /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

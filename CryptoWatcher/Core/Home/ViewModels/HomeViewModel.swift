@@ -11,6 +11,7 @@ import Combine
 class HomeViewModel: ObservableObject {
     
     @Published var selectedTab = 0
+    @Published var isLoading: Bool = true
     @Published var searchTextCurrencies: String = ""
     @Published var searchTextPortfolio: String = ""
     @Published var allCoins: [CoinModel] = []
@@ -30,6 +31,7 @@ class HomeViewModel: ObservableObject {
             .map(filterCoins)
             .sink { [weak self] receivedValue in
                 self?.allCoins = receivedValue
+                self?.isLoading = false
             }
             .store(in: &cancellables)
     }
