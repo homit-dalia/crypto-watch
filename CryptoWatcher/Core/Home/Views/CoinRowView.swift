@@ -14,9 +14,11 @@ struct CoinRowView: View {
     
     var body: some View {
         HStack{
-            Text("\(coin.rank)")
-                .font(.headline)
-                .foregroundStyle(Color.theme.accent)
+            if !showHoldingColumn{
+                Text("\(coin.rank)")
+                    .font(.headline)
+                    .foregroundStyle(Color.theme.accent)
+            }
             CoinImage(url: coin.image)
                 .padding(.horizontal, 4)
             Text(coin.symbol.uppercased())

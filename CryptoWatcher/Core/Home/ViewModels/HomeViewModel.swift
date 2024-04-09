@@ -19,11 +19,13 @@ class HomeViewModel: ObservableObject {
     @Published var isStatisticsLoading: Bool = true
     @Published var marketStatistics: [StatisticModel] = []
     @Published var userStatistics: [StatisticModel] = []
+    
     @Published var allCoins: [CoinModel] = []
     @Published var allPortfolio: [CoinModel] = []
     
     private let coinDataService = CoinDataService()
     private let marketDataService = MarketDataService()
+    private let portfolioDataService = PortfolioDataService()
     private var cancellables = Set<AnyCancellable>()
     
     init() {
@@ -42,6 +44,7 @@ class HomeViewModel: ObservableObject {
             .store(in: &cancellables)
         
         marketDataService.$marketData
+            .combineLatest(portfolioDataService.$totalHoldings)
             .map(mapGlobalMarketData)
             .sink { [weak self] (returnedStatistics) in
                 self?.marketStatistics = Array(returnedStatistics.prefix(3))
@@ -49,6 +52,26 @@ class HomeViewModel: ObservableObject {
                 self?.isStatisticsLoading = false
             }
             .store(in: &cancellables)
+        
+        $allCoins
+            .combineLatest(portfolioDataService.$savedEntities)
+            .map {(coins, entities) -> [CoinModel] in
+                coins
+                    .compactMap { (coin) -> CoinModel? in
+                        if let entity = entities.first(where: {$0.coinID == coin.id}) {
+                            return coin.updateHoldings(amount: entity.amount)
+                        }
+                        return nil
+                    }
+            }
+            .sink { [weak self] (returnedCoins) in
+                self?.allPortfolio = returnedCoins
+            }
+            .store(in: &cancellables)
+    }
+    
+    func updatePortfolio(coin: CoinModel, amount: Double) {
+        portfolioDataService.updatePortfolio(coin: coin, amount: amount)
     }
     
     
@@ -65,7 +88,7 @@ class HomeViewModel: ObservableObject {
         }
     }
     
-    private func mapGlobalMarketData(marketDataModel: MarketDataModel?) -> [StatisticModel] {
+    private func mapGlobalMarketData(marketDataModel: MarketDataModel?, totalHoldings: Double) -> [StatisticModel] {
         
         var stats: [StatisticModel] = []
         guard let data = marketDataModel else {return stats}
@@ -73,7 +96,7 @@ class HomeViewModel: ObservableObject {
             StatisticModel(title: "Market Cap", value: data.marketCap, percentageChange: data.marketCapChangePercentage24HUsd),
             StatisticModel(title: "Volume", value: data.volume),
             StatisticModel(title: "BTC Mkt. %", value: data.btcDominance),
-            StatisticModel(title: "Holdings", value: "$0.00", percentageChange:0)
+            StatisticModel(title: "Holdings", value: String(totalHoldings), percentageChange:0)
         ])
         return stats
     }

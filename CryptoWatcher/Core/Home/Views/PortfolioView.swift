@@ -11,6 +11,7 @@ struct PortfolioView: View {
     
     @EnvironmentObject private var vm: HomeViewModel
     @State private var searchText: String = ""
+    @State private var isAddPortfolioViewVisible: Bool = false
     
     var body: some View {
         HStack {
@@ -32,9 +33,14 @@ struct PortfolioView: View {
             .searchable(text: $vm.searchTextPortfolio)
             .autocorrectionDisabled()
         }
-        .toolbar {            
+        .sheet(isPresented: $isAddPortfolioViewVisible, content: {
+            AddPortfolioView()
+                .environmentObject(vm)
+        })
+        .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
+                    isAddPortfolioViewVisible.toggle()
                 }) {
                     Image(systemName: "plus")
                 }
