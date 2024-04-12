@@ -30,6 +30,9 @@ struct CurrenciesView: View {
                 }
                 .listStyle(.plain)
                 .searchable(text: $vm.searchTextCurrencies)
+                .refreshable {
+                    vm.refreshData()
+                }
                 .autocorrectionDisabled()
             }
         }
