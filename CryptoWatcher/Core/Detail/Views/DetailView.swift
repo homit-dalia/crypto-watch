@@ -20,7 +20,11 @@ struct LazyDetailView: View {
 
 struct DetailView: View {
     
-    let coin: CoinModel
+    @StateObject var vm: DetailViewModel
+    
+    init(coin: CoinModel) {
+        _vm = StateObject(wrappedValue: DetailViewModel(coin: coin))
+    }
     
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
