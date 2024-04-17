@@ -27,10 +27,54 @@ struct DetailView: View {
     }
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView {
+            VStack(spacing: 20) {
+                Text("")
+                    .frame(minHeight: 100)
+                ContentView(title: "Overview", content: vm.overviewStatistics)
+                
+                Divider()
+                
+                ContentView(title: "Additional Information", content: vm.additionalStatistics)
+            }
+        }
+        .padding()
+        .navigationTitle(vm.coin.name)
     }
 }
 
+extension DetailView {
+    
+    struct ContentView: View {
+        
+        let title: String
+        let content: [StatisticModel]
+        
+        private let columns: [GridItem] = [
+            GridItem(.flexible()),
+            GridItem(.flexible())
+        ]
+        
+        var body: some View {
+            Text(title)
+                .font(.title)
+                .bold()
+                .frame(maxWidth: .infinity, alignment: .leading)
+            LazyVGrid(columns: columns,
+                      alignment: .leading,
+                      spacing: 20,
+                      content: {
+                ForEach(content) { stats in
+                    StatsView(type: .market, statistics: [stats])
+                }
+            })
+        }
+    }
+    
+    
+}
 #Preview {
-    DetailView(coin: DeveloperPreview.instance.coin)
+    NavigationView{
+        DetailView(coin: DeveloperPreview.instance.coin)
+    }
 }
