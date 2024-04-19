@@ -29,12 +29,10 @@ struct DetailView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                Text("")
-                    .frame(minHeight: 100)
-                ContentView(title: "Overview", content: vm.overviewStatistics)
-                
+                ChartView(coin: vm.coin)
                 Divider()
-                
+                ContentView(title: "Overview", content: vm.overviewStatistics)
+                Divider()
                 ContentView(title: "Additional Information", content: vm.additionalStatistics)
             }
         }
