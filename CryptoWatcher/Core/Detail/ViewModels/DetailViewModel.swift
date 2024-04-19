@@ -13,6 +13,10 @@ class DetailViewModel: ObservableObject {
     @Published var overviewStatistics: [StatisticModel] = []
     @Published var additionalStatistics: [StatisticModel] = []
     
+    @Published var description: String? = ""
+    @Published var websiteURL: String? = ""
+    @Published var redditURL: String? = ""
+
     @Published var coin: CoinModel
     private let coinDetailService: CoinDetailService
     private var cancellables = Set<AnyCancellable>()
@@ -27,7 +31,7 @@ class DetailViewModel: ObservableObject {
         
         coinDetailService.$detail
             .combineLatest($coin)
-            .map({(coinDetailModel, coinModel) -> (overviewStats: [StatisticModel], additionalStats: [StatisticModel]) in
+            .map({(coinDetailModel, coinModel) -> (overviewStats: [StatisticModel], additionalStats: [StatisticModel], description: String?, websiteURL: String?, redditURL: String?) in
                 
                 let price = coinModel.currentPrice.asCurrencyWith6Decimals()
                 let priceChange = coinModel.priceChangePercentage24H
@@ -69,12 +73,20 @@ class DetailViewModel: ObservableObject {
                 
                 let additionalArray: [StatisticModel] = [ highStat, lowStat, priceChangeStat, marketCapChangeStat, blockStat, hashingStat]
                 
-                return (overviewArray, additionalArray)
+                let description: String? = coinDetailModel?.readableDescription
+                let websiteURL: String? = coinDetailModel?.links?.homepage?.first
+                let redditURL: String? = coinDetailModel?.links?.subredditURL
+                
+                return (overviewArray, additionalArray, description, websiteURL, redditURL)
                 
             })
             .sink{ [weak self] returnedArrays in
                 self?.overviewStatistics = returnedArrays.overviewStats
                 self?.additionalStatistics = returnedArrays.additionalStats
+                self?.description = returnedArrays.description
+                self?.websiteURL = returnedArrays.websiteURL
+                self?.redditURL = returnedArrays.redditURL
+
             }
             .store(in: &cancellables)
     }

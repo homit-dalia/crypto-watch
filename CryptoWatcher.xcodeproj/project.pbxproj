@@ -14,6 +14,8 @@
 		951DD4642BCC14D70075DC07 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951DD4632BCC14D70075DC07 /* String.swift */; };
 		951DD4662BCC159E0075DC07 /* CoinDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951DD4652BCC159E0075DC07 /* CoinDetailService.swift */; };
 		951DD4682BCC19930075DC07 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951DD4672BCC19930075DC07 /* DetailViewModel.swift */; };
+		9521A2E42BD2D70C00F015A7 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9521A2E22BD2D70C00F015A7 /* Date.swift */; };
+		9521A2E52BD2D70C00F015A7 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9521A2E32BD2D70C00F015A7 /* UIApplication.swift */; };
 		95833B702BA39B4500FA942D /* CryptoWatcherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95833B6F2BA39B4500FA942D /* CryptoWatcherApp.swift */; };
 		95833B742BA39B4700FA942D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95833B732BA39B4700FA942D /* Assets.xcassets */; };
 		95833B772BA39B4700FA942D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95833B762BA39B4700FA942D /* Preview Assets.xcassets */; };
@@ -51,6 +53,8 @@
 		951DD4632BCC14D70075DC07 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		951DD4652BCC159E0075DC07 /* CoinDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailService.swift; sourceTree = "<group>"; };
 		951DD4672BCC19930075DC07 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		9521A2E22BD2D70C00F015A7 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		9521A2E32BD2D70C00F015A7 /* UIApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		95833B6C2BA39B4500FA942D /* CryptoWatcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoWatcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95833B6F2BA39B4500FA942D /* CryptoWatcherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoWatcherApp.swift; sourceTree = "<group>"; };
 		95833B732BA39B4700FA942D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -160,9 +164,11 @@
 		95833B7D2BA39D8300FA942D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				9521A2E22BD2D70C00F015A7 /* Date.swift */,
 				95833B7E2BA39D9A00FA942D /* Color.swift */,
-				95833B962BA6448E00FA942D /* Double.swift */,
 				951DD4632BCC14D70075DC07 /* String.swift */,
+				95833B962BA6448E00FA942D /* Double.swift */,
+				9521A2E32BD2D70C00F015A7 /* UIApplication.swift */,
 				95833B922BA63AC300FA942D /* PreviewProvider.swift */,
 			);
 			path = Extensions;
@@ -342,6 +348,7 @@
 				95833B972BA6448E00FA942D /* Double.swift in Sources */,
 				95FF34542BAE02A2008811C2 /* CoinImageView.swift in Sources */,
 				95FF34582BB1A86E008811C2 /* PortfolioView.swift in Sources */,
+				9521A2E42BD2D70C00F015A7 /* Date.swift in Sources */,
 				95833B832BA6130000FA942D /* HomeView.swift in Sources */,
 				95833B702BA39B4500FA942D /* CryptoWatcherApp.swift in Sources */,
 				95833B8A2BA615B300FA942D /* CircleButtonView.swift in Sources */,
@@ -350,6 +357,7 @@
 				951DD4602BCB0EB80075DC07 /* DetailView.swift in Sources */,
 				95FF345E2BB6A126008811C2 /* StatisticView.swift in Sources */,
 				95FF34522BADFC7A008811C2 /* CoinImageService.swift in Sources */,
+				9521A2E52BD2D70C00F015A7 /* UIApplication.swift in Sources */,
 				95FF34682BB7295B008811C2 /* MarketDataService.swift in Sources */,
 				95833B952BA63ADD00FA942D /* CoinRowView.swift in Sources */,
 				95ABA2CD2BAA14930027073E /* CoinDataService.swift in Sources */,
