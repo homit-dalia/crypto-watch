@@ -114,7 +114,7 @@ class HomeViewModel: ObservableObject {
             }
             .reduce(0, +)
         
-        let percentageChange = ((portfolioValue - previousValue) / previousValue ) * 100
+        let percentageChange = (portfolioValue - previousValue) / previousValue
         
         stats.append(contentsOf: [
             StatisticModel(title: "Market Cap", value: data.marketCap, percentageChange: data.marketCapChangePercentage24HUsd),
