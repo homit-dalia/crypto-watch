@@ -1,5 +1,5 @@
 # Crypto Watch
-Crypto watch is a native iOS app made using Apple's new SwiftUI Framework. This app uses MVVM architecture and was made using the tutorials available from https://github.com/SwiftfulThinking/. It utilizes Combine and CoreData.
+Crypto watch is a native iOS app made using Apple's new SwiftUI Framework. This app uses MVVM architecture and was made using the tutorials available from https://github.com/SwiftfulThinking/. It utilizes Combine and CoreData. (All the code was handwritten before vibecoding was a thing).
 
 ## Screen Recording
 
